@@ -3,9 +3,6 @@ import { Container, Button } from 'react-floating-action-button'
 
 
 class ShowHide extends Component {
-    constructor(props) {
-        super(props);
-    }
 
     render() {
         return (

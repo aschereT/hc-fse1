@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ListGroup from 'react-bootstrap/ListGroup';
-import Spinner from 'react-bootstrap/Spinner'
+// import Spinner from 'react-bootstrap/Spinner'
 
 
 class MesList extends Component {
@@ -13,7 +13,7 @@ class MesList extends Component {
     }
 
     getBulk() {
-        fetch('http://localhost:8000/hcfse/bulk')
+        fetch('/hcfse/bulk')
             .then(response => response.json(), _ => new Promise(() => Promise.resolve({ BulkMes: {} })))
             .then(data => this.setState({ messages: data.BulkMes})
             )

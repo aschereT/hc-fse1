@@ -24,6 +24,11 @@
   top: 50%;
   /* margin-top: -50px; */
 }
+
+.fab-item {
+  z-index: 111111;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

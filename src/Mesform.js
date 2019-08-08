@@ -25,7 +25,7 @@ class Mesform extends Component {
     handleSubmit(event) {
         event.preventDefault();
         let tt = this;
-        fetch('http://localhost:8000/hcfse/post', {
+        fetch('/hcfse/post', {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
