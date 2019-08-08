@@ -1,3 +1,22 @@
+## Usage
+
+1. Install backend dependencies:
+```shell
+go get github.com/gorilla/mux
+go get github.com/rs/cors
+```
+
+2. Install frontend dependencies:
+```shell
+npm install
+```
+
+3. Start backend code: `go run backend.go`
+
+4. Start the front end: `npm start`
+
+5. Frontend should be opened by step 2. If not, visit [localhost:3000](localhost:3000)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
