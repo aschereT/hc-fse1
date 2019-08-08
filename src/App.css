@@ -6,6 +6,24 @@
   text-align: center;
 }
 
+.form {
+  width: 100%;
+  position: fixed;
+  left: 20%;
+  bottom: 0px;
+  z-index: 100001;
+  opacity: 1;
+  text-align: center;
+}
+
+.container {
+  width: 100%;
+}
+
+.Button {
+  top: 50%;
+  /* margin-top: -50px; */
+}
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal'
+import Modal from 'react-bootstrap/Modal';
+import InputGroup from 'react-bootstrap/InputGroup';
 
 class Mesform extends Component {
 
@@ -34,64 +35,99 @@ class Mesform extends Component {
                 username: this.state.username,
                 content: this.state.message
             }),
-        }).then(response => response.json()).then(function(response) {
+        }).then(response => response.json()).then(function (response) {
             switch (response.Status) {
                 case 406:
                     //too offensive
                     tt.setState((state, _) => {
-                        return {notify: true, notHeader: "Failed to post message", notMessage: "Your message has been deemed too offensive. Please be civil and try again!"};
+                        return { notify: true, notHeader: "Failed to post message", notMessage: "Your message has been deemed too offensive. Please be civil and try again!" };
                     })
                     break;
                 case 403:
                     //banned
                     tt.setState((state, _) => {
-                        return {notify: true, notHeader: "Banned!", notMessage: "The username " + state.username + " has been banned for posting too many offensive messages!"};
+                        return { notify: true, notHeader: "Banned!", notMessage: "The username " + state.username + " has been banned for posting too many offensive messages!" };
                     })
                     break;
                 default:
                     //success!
                     tt.setState((state, _) => {
-                        return {notify: true, notHeader: "Success!", notMessage: "Your message has been posted!", message: '', username: state.username};
+                        return { notify: true, notHeader: "Success!", notMessage: "Your message has been posted!", message: '', username: state.username };
                     });
                     break;
-            }})
+            }
+        })
     }
 
     render() {
-        if(this.state.notify) {
+        if (this.state.notify) {
             return (
                 <Modal show={this.state.notify} onHide={() => this.setState((state, _) => {
-                    return {notify: false};
+                    return { notify: false };
                 })}>
-                  <Modal.Header closeButton>
-                    <Modal.Title>{this.state.notHeader}</Modal.Title>
-                  </Modal.Header>
-                  <Modal.Body>{this.state.notMessage}</Modal.Body>
-                  <Modal.Footer>
-                    <Button variant="primary" onClick={() => this.setState((state, _) => {
-                    return {notify: false};
-                })}>
-                      Close
+                    <Modal.Header closeButton>
+                        <Modal.Title>{this.state.notHeader}</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>{this.state.notMessage}</Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="primary" onClick={() => this.setState((state, _) => {
+                            return { notify: false };
+                        })}>
+                            Close
                     </Button>
-                  </Modal.Footer>
+                    </Modal.Footer>
                 </Modal>
             );
+        }
+        console.log("Showit is " + this.props.showit)
+        if (!this.props.showit) {
+            return(
+                <div></div>
+            )
         }
         return (
             <Form onSubmit={this.handleSubmit}>
                 <br></br>
                 <Form.Row>
-                    <Col>
-                        <Form.Group controlId="formUsername">
-                            <Form.Control name="username" type="text" placeholder="Enter your username" value={this.state.username} onChange={this.handleChange} />
-                        </Form.Group>
-                    </Col>
-                    <Col>
-                        <Form.Group controlId="formMessage">
-                            <Form.Control name="message" type="text" placeholder="Enter your message" value={this.state.message} onChange={this.handleChange} />
-                        </Form.Group>
-                    </Col>
-                    <Button variant="primary" type="submit" value="submit" lg={1}>
+                    <Form.Group as={Col} md="2" controlId="formUsername">
+                        <InputGroup>
+                            <InputGroup.Prepend>
+                                <InputGroup.Text id="inputGroupPrepend">Username</InputGroup.Text>
+                            </InputGroup.Prepend>
+                            <Form.Control
+                                name="username"
+                                type="text"
+                                placeholder="Username"
+                                aria-describedby="inputGroupPrepend"
+                                required
+                                value={this.state.username}
+                                onChange={this.handleChange}
+                            />
+                            <Form.Control.Feedback type="invalid">
+                                Please choose a username.
+                            </Form.Control.Feedback>
+                        </InputGroup>
+                    </Form.Group>
+                    <Form.Group as={Col} md="5" controlId="formMessage">
+                        <InputGroup>
+                            <InputGroup.Prepend>
+                                <InputGroup.Text id="inputGroupPrepend">Message</InputGroup.Text>
+                            </InputGroup.Prepend>
+                            <Form.Control
+                                name="message"
+                                type="text"
+                                placeholder="Message"
+                                aria-describedby="inputGroupPrepend"
+                                required
+                                value={this.state.message}
+                                onChange={this.handleChange}
+                            />
+                            <Form.Control.Feedback type="invalid">
+                                Please choose a username.
+                            </Form.Control.Feedback>
+                        </InputGroup>
+                    </Form.Group>
+                    <Button variant="primary" type="submit" value="submit" md="1">
                         Submit
                 </Button>
                 </Form.Row>
