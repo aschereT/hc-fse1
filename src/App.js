@@ -29,6 +29,7 @@ class App extends Component {
   render() {
     return (
       <>
+      <h1 align="center">The Hack Capital Full Stack BBS feat. Vincent Tan</h1>
         <Container>
           <Row>
             <MesList></MesList>
