@@ -29,6 +29,10 @@
   z-index: 111111;
 }
 
+.list-group-item {
+  background-color: #073642;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
