@@ -229,7 +229,7 @@ func main() {
 	//we start with an array and then translate to map,
 	//as changing the array is easier than a bunch
 	//of "badword": empty{}
-	dictionary := []string{"bad", "horrible", "liar"}
+	dictionary := []string{"bad", "horrible", "liar", "waterfall", "javascript"}
 	badWordsMap := map[string]empty{}
 	for _, bw := range dictionary {
 		badWordsMap[bw] = empty{}
